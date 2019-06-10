@@ -17,8 +17,15 @@ export class ProductComponent implements OnInit {
   totalPage = 0
   productDetail: any
   ngOnInit() {
-    
+    this.loadProducts()
+  }
 
+  logOut(){
+    localStorage.removeItem('ACCESS_TOKEN')
+    this.router.navigateByUrl('');
+  }
+
+  loadProducts(){
     if(this.apiService.isLoggedIn()){
       this.apiService.productsListService(1).subscribe((response:any)=>{
         this.productListing(response)
@@ -27,7 +34,6 @@ export class ProductComponent implements OnInit {
     else{
       this.router.navigateByUrl('');
     }
-    
   }
 
   productListing(response:any){
@@ -78,7 +84,15 @@ export class ProductComponent implements OnInit {
 
   showProduct(product) {
     console.log(product)
-    $("#productDetailModal").modal('show');
+    this.apiService.productsDetailService(product).subscribe((response:any)=>{
+      console.log(response)
+      if(response.code == 200){
+        this.productDetail = response.data.product
+        $("#productDetailModal").modal('show');
+      }
+    })
+
+    
   }
 
 }

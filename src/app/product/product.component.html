@@ -10,7 +10,7 @@
       
         <div class="input-group input-group-sm">
           <input type="text" id="searchQuery" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-            placeholder="Search..." #ref>
+            placeholder="Search by name or model or year..." #ref>
           <div class="input-group-append">
             <button type="button" class="btn btn-secondary btn-number" (click)="searchProducts(ref.value)">
               Search
@@ -18,7 +18,7 @@
             
           </div>
           <div class="input-group-append pl-3">
-            <a class="btn btn-secondary btn-danger btn-sm " href="">Logout</a>
+            <a class="btn btn-secondary btn-danger btn-sm " href="" (click)="logOut()">Logout</a>
           </div>
         </div>
         
@@ -73,12 +73,31 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">{{product_name}}</h4>
+        <h4 class="modal-title">{{productDetail.name}}</h4>
       </div>
-
+     
       <!-- Modal body -->
       <div class="modal-body">
-        
+        <table class="table table-border">
+          <tbody>
+            <tr>
+              <td>Model</td>
+              <td>{{productDetail.model}}</td>
+            </tr>
+            <tr>
+              <td>RAM</td>
+              <td>{{productDetail.ram_size}}</td>
+            </tr>
+            <tr>
+              <td>Storage</td>
+              <td>{{productDetail.external_storage}}</td>
+            </tr>
+            <tr>
+              <td>Deatils</td>
+              <td>{{productDetail.raw_details}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <!-- Modal footer -->

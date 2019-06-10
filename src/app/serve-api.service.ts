@@ -11,7 +11,7 @@ export class ServeApiService {
   constructor(private httpClient: HttpClient) { }
   
   userLoginService(email:any, password:any){
-    const httpOption = {
+    var httpOption = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
       })
@@ -26,6 +26,8 @@ export class ServeApiService {
   getAuthToken(){
     return localStorage.getItem('ACCESS_TOKEN')
   }
+
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
