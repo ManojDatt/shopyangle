@@ -1,0 +1,10 @@
+{
+    "/api/v1/*":{
+        "target": "http://shop365app.herokuapp.com",
+        "secure": false,
+        "pathRewrite": {
+            "^/api/v1": ""
+          },
+        "logLevel": "debug"
+    }
+}

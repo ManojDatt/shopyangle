@@ -1,3 +1,90 @@
-<p>
-  product works!
-</p>
+<nav class="navbar navbar-expand-md navbar-primary bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="">Simple Shop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+      
+        <div class="input-group input-group-sm">
+          <input type="text" id="searchQuery" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+            placeholder="Search..." #ref>
+          <div class="input-group-append">
+            <button type="button" class="btn btn-secondary btn-number" (click)="searchProducts(ref.value)">
+              Search
+            </button>
+            
+          </div>
+          <div class="input-group-append pl-3">
+            <a class="btn btn-secondary btn-danger btn-sm " href="">Logout</a>
+          </div>
+        </div>
+        
+    </div>
+  </div>
+</nav>
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">E-SHOP CART</h1>
+  </div>
+</section>
+<div class="container">
+<table #dataTable class="table table-hover">
+  <thead>
+    <tr>
+
+      <th>ID</th>
+      <th>Name</th>
+      <th>Cost Price ($)</th>
+      <th>Selling Price ($)</th>
+      <th>Model</th>
+      <th>Make Year</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.id}}</td>
+      <td>{{ product.name}}</td>
+      <td>{{ product.cost_price}}</td>
+      <td>{{ product.selling_price}}</td>
+      <td>{{ product.model}}</td>
+      <td>{{ product.make_year}}</td>
+      <td><a herf="avascript:void(0);" class="btn btn-info" (click)="showProduct(product.id)">View More..</a></td>
+    </tr>
+
+
+  </tbody>
+  </table>
+  <ul class="pagination text-center">
+    <li class="page-item"><a class="page-link" href="javascript:void(0);" (click)="firstPageProducts()"><<<</a></li>
+    <li class="page-item"><a class="page-link" href="javascript:void(0);" (click)="previousPageProducts()">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="javascript:void(0);">{{currentPage}} page of {{totalPage}}</a></li>
+    <li class="page-item"><a class="page-link" href="javascript:void(0);" (click)="nextPageProducts()">Next</a></li>
+    <li class="page-item"><a class="page-link" href="javascript:void(0);" (click)="lastPageProducts()">>>></a></li>
+  </ul>
+</div>
+
+<div class="modal fade" id="productDetailModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">{{product_name}}</h4>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" id="close-modal" data-dismiss="modal" style="display: none">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
