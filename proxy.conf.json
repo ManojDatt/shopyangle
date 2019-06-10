@@ -1,7 +1,7 @@
 {
     "/api/v1/*":{
-        "target": "http://shop365app.herokuapp.com",
-        "secure": false,
+        "target": "https://shop365app.herokuapp.com",
+        "secure": true,
         "pathRewrite": {
             "^/api/v1": ""
           },
