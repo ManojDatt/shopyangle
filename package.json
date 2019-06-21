@@ -28,6 +28,7 @@
     "datatables.net-dt": "^1.10.19",
     "jquery": "^3.4.1",
     "jszip": "^3.2.1",
+    "ngx-export-as": "^1.2.5",
     "ngx-pagination": "^3.2.1",
     "pdfmake": "^0.1.57",
     "popper": "^1.0.1",

@@ -1,6 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { ServeApiService } from '../serve-api.service';
 import { Router } from  '@angular/router';
+import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
+
 declare var $: any;
 @Component({
   selector: 'app-product',
@@ -9,7 +11,18 @@ declare var $: any;
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private apiService: ServeApiService, private router: Router) { }
+  exportAsConfig: ExportAsConfig = {
+    type: 'xlsx', 
+    elementId: 'product_table_id',
+    options: { // html-docx-js document options
+      orientation: 'landscape',
+      margins: {
+        top: '20'
+      }
+    }
+  }
+
+  constructor(private apiService: ServeApiService, private router: Router, private exportAsService: ExportAsService) { }
   products  = []; 
   nextPage = 0
   currentPage = 0
@@ -18,6 +31,15 @@ export class ProductComponent implements OnInit {
   productDetail: any
   ngOnInit() {
     this.loadProducts()
+  }
+
+  exports() {
+    // download the file using old school javascript method
+    this.exportAsService.save(this.exportAsConfig, 'Products');
+    // // get the data as base64 or json object for json type - this will be helpful in ionic or SSR
+    // this.exportAsService.get(this.config).subscribe(content => {
+    //   console.log(content);
+    // });
   }
 
   logOut(){
